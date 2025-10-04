@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { supabase as supabaseClient } from "@/integrations/supabase/client";
-const supabase = supabaseClient as any;
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Sparkles, Loader2, FileText, CheckCircle2, Circle, User } from "lucide-react";
+import { ArrowLeft, Sparkles, Loader2, FileText, CheckCircle2, Circle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 
@@ -30,7 +29,6 @@ interface Task {
   type: "ai" | "human";
   status: "pending" | "in_progress" | "completed";
   assigned_to: string | null;
-  profiles?: { name: string };
 }
 
 const Project = () => {
@@ -59,33 +57,33 @@ const Project = () => {
 
   const loadProject = async () => {
     try {
-      const { data: projectData, error: projectError } = (await supabase
+      const { data: projectData, error: projectError } = await supabase
         .from("projects")
         .select("*")
         .eq("id", id)
-        .single()) as any;
+        .single();
 
       if (projectError) throw projectError;
       setProject(projectData);
 
-      const { data: briefsData, error: briefsError } = (await supabase
+      const { data: briefsData, error: briefsError } = await supabase
         .from("briefs")
         .select("*")
         .eq("project_id", id)
-        .order("created_at", { ascending: false })) as any;
+        .order("created_at", { ascending: false });
 
       if (briefsError) throw briefsError;
       setBriefs(briefsData || []);
 
       if (briefsData && briefsData.length > 0) {
-        const { data: tasksData, error: tasksError } = (await supabase
+        const { data: tasksData, error: tasksError } = await supabase
           .from("tasks")
           .select(`
             *,
-            profiles:assigned_to(name)
+            assigned_profile:profiles!tasks_assigned_to_fkey(name)
           `)
-          .in("brief_id", briefsData.map((b: any) => b.id))
-          .order("created_at", { ascending: false })) as any;
+          .in("brief_id", briefsData.map((b) => b.id))
+          .order("created_at", { ascending: false });
 
         if (tasksError) throw tasksError;
         setTasks(tasksData || []);
@@ -109,32 +107,32 @@ const Project = () => {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       
-      const { data: briefData, error: briefError } = (await supabase
+      const { data: briefData, error: briefError } = await supabase
         .from("briefs")
         .insert([{
           project_id: id,
           content: newBrief,
           status: "generating",
           created_by: session?.user?.id
-        }] as any)
+        }])
         .select()
-        .single()) as any;
+        .single();
 
       if (briefError) throw briefError;
 
       const { data: tasksData, error: functionError } = await supabase.functions.invoke(
         "generate-tasks",
         {
-          body: { brief: newBrief, briefId: briefData?.id }
+          body: { brief: newBrief, briefId: briefData.id }
         }
       );
 
       if (functionError) throw functionError;
 
-      await (supabase
+      await supabase
         .from("briefs")
-        .update({ status: "active" } as any)
-        .eq("id", briefData?.id) as any);
+        .update({ status: "active" })
+        .eq("id", briefData.id);
 
       toast({
         title: "Tasks generated!",
@@ -156,10 +154,10 @@ const Project = () => {
 
   const handleTaskStatusChange = async (taskId: string, newStatus: "pending" | "in_progress" | "completed") => {
     try {
-      const { error } = (await supabase
+      const { error } = await supabase
         .from("tasks")
-        .update({ status: newStatus } as any)
-        .eq("id", taskId)) as any;
+        .update({ status: newStatus })
+        .eq("id", taskId);
 
       if (error) throw error;
 
@@ -324,12 +322,6 @@ const Project = () => {
                               <p className="text-sm text-muted-foreground mb-2">
                                 {task.description}
                               </p>
-                            )}
-                            {task.assigned_to && task.profiles && (
-                              <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                                <User className="h-3 w-3" />
-                                {task.profiles.name}
-                              </div>
                             )}
                           </div>
                           <Button

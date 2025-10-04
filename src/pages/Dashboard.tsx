@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase as supabaseClient } from "@/integrations/supabase/client";
-const supabase = supabaseClient as any;
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -55,10 +54,10 @@ const Dashboard = () => {
 
   const loadProjects = async () => {
     try {
-      const { data, error } = (await supabase
+      const { data, error } = await supabase
         .from("projects")
         .select("*")
-        .order("created_at", { ascending: false })) as any;
+        .order("created_at", { ascending: false });
 
       if (error) throw error;
       setProjects(data || []);
@@ -77,15 +76,15 @@ const Dashboard = () => {
     e.preventDefault();
     
     try {
-      const { data, error } = (await supabase
+      const { data, error } = await supabase
         .from("projects")
         .insert([{ 
           name: newProject.name, 
           description: newProject.description,
           owner_id: user?.id 
-        }] as any)
+        }])
         .select()
-        .single()) as any;
+        .single();
 
       if (error) throw error;
 
