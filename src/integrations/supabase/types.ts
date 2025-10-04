@@ -194,6 +194,10 @@ export type Database = {
         Args: { _project_id: string; _user_id: string }
         Returns: boolean
       }
+      user_can_view_profile: {
+        Args: { _profile_id: string; _viewer_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       brief_status: "draft" | "generating" | "active" | "completed"
