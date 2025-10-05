@@ -376,3 +376,274 @@ Requirements:
 
 Use React Hook Form + Zod for validation, shadcn/ui components, Tailwind CSS.
 ```
+
+## 12. Enhanced AI Tool Prompts
+
+### For v0.dev / Lovable (Enhanced)
+
+```
+Create a professional brief creation dialog using React, TypeScript, and shadcn/ui.
+
+LAYOUT:
+- Modal dialog, 600px width on desktop, full-screen on mobile
+- Semi-transparent backdrop with blur effect
+- Header: "Create New Brief" + close button (X)
+- Form body with vertical layout, 24px spacing
+- Footer: Cancel (ghost) + Generate Tasks (primary) buttons
+
+COMPONENTS:
+
+1. Title Input:
+   - Label: "Brief Title *" (required indicator)
+   - Placeholder: "e.g., Q1 Marketing Campaign"
+   - Max length: 100 characters
+   - Validation: Min 5 chars, show error on blur
+   - Error message: "Title must be at least 5 characters"
+   - Full-width, 44px height, 16px font size
+
+2. Description Textarea:
+   - Label: "Brief Description *"
+   - Placeholder: "Describe what needs to be done in detail..."
+   - Min height: 200px, max height: 400px (auto-expand)
+   - Character counter (bottom-right inside textarea):
+     * < 500: gray color
+     * 500-1000: green color (optimal)
+     * > 1000: orange color
+     * Format: (850)
+   - Validation: Min 100 chars
+   - Error message: "Description must be at least 100 characters"
+
+3. Helper Text:
+   - Below textarea: "500-1000 characters recommended"
+   - Small text, muted color
+
+4. Buttons:
+   - Cancel: Ghost variant, left-aligned
+   - Generate Tasks: Primary variant, right-aligned
+     * Disabled when form invalid
+     * Loading state: Spinner + "Generating..." text
+     * Sparkles icon (✨) before text when enabled
+
+BEHAVIOR:
+- Auto-focus title input on open
+- Real-time character counting
+- Validation on blur (not on every keystroke)
+- Escape key closes dialog (with confirmation if dirty)
+- Form submission on Ctrl/Cmd + Enter
+
+VALIDATION:
+- Use React Hook Form + Zod schema
+- Show errors below inputs in red
+- Disable submit button when invalid
+
+ACCESSIBILITY:
+- Dialog role with aria-modal
+- All inputs have labels
+- Error messages linked with aria-describedby
+- Focus trap within dialog
+- Focus returns to trigger on close
+
+RESPONSIVE:
+- Mobile (< 640px): Full-screen modal, vertical buttons
+- Desktop (> 640px): 600px centered modal, horizontal buttons
+
+TECH STACK:
+- React 18 + TypeScript
+- shadcn/ui: Dialog, Input, Textarea, Button, Label
+- React Hook Form for form state
+- Zod for validation schema
+- Tailwind CSS for styling
+```
+
+### For Figma AI / Design Tools
+
+```
+Design a brief creation modal dialog with the following specifications:
+
+FRAME STRUCTURE:
+1. Overlay (full viewport)
+   - Background: rgba(0, 0, 0, 0.5) with blur
+   - Click to close
+
+2. Dialog Container (600px × auto, centered)
+   - Background: White
+   - Border radius: 8px
+   - Shadow: 0 25px 50px rgba(0, 0, 0, 0.25)
+   - Padding: 24px
+
+3. Header Section (auto-layout horizontal)
+   - Title: "Create New Brief" (18px, semibold)
+   - Close button: X icon (24px, clickable)
+   - Spacing: Space between (justify)
+
+4. Form Section (auto-layout vertical, 16px gap)
+   
+   A. Title Input Group:
+      - Label: "Brief Title *" (14px, medium, #1e293b)
+      - Input field:
+        * Height: 44px
+        * Border: 1px solid #e2e8f0
+        * Border radius: 6px
+        * Padding: 12px 16px
+        * Placeholder: "e.g., Q1 Marketing Campaign" (gray)
+        * Font: 16px regular
+      - Error state: Red border + error text below
+
+   B. Description Textarea Group:
+      - Label: "Brief Description *" (14px, medium, #1e293b)
+      - Textarea:
+        * Min height: 200px
+        * Border: 1px solid #e2e8f0
+        * Border radius: 6px
+        * Padding: 12px 16px
+        * Placeholder: "Describe what needs to be done..."
+        * Font: 16px regular, line-height: 1.625
+        * Character counter (bottom-right): (850)
+      - Helper text: "500-1000 characters recommended" (12px, #64748b)
+
+5. Footer Section (auto-layout horizontal, 12px gap, right-aligned)
+   - Cancel button:
+     * Background: transparent
+     * Border: none
+     * Text: "Cancel" (14px, medium)
+     * Padding: 10px 20px
+     * Hover: Light gray background
+   
+   - Generate Tasks button:
+     * Background: #0f172a (primary)
+     * Text: "Generate Tasks" (14px, medium, white)
+     * Padding: 10px 24px
+     * Border radius: 6px
+     * Icon: ✨ sparkles (left of text)
+     * Disabled state: 50% opacity
+     * Loading state: Spinner animation
+
+STATES TO DESIGN:
+1. Empty state (pristine)
+2. Typing state (active input)
+3. Valid state (green indicators)
+4. Error state (red borders + messages)
+5. Loading state (generating)
+
+COLOR PALETTE:
+- Background: #FFFFFF
+- Text primary: #0f172a
+- Text secondary: #64748b
+- Border: #e2e8f0
+- Error: #ef4444
+- Success: #10b981
+- Primary button: #0f172a
+
+VARIANTS NEEDED:
+- Desktop (600px width)
+- Mobile (full-width, 100vw)
+```
+
+### For Visily.ai / Wireframing Tools
+
+```
+SCREEN: Brief Creation Modal
+
+COMPONENTS:
+1. Modal overlay (full screen, dark semi-transparent)
+2. Dialog box (white card, centered, 600px wide)
+
+STRUCTURE (top to bottom):
+
+[Header]
+- Text: "Create New Brief" (left-aligned, bold)
+- Icon button: X close (right-aligned)
+- Divider line below
+
+[Form Body - 24px padding]
+
+Input 1: Brief Title
+- Label above: "Brief Title *"
+- Text input field (single line, 100 char limit)
+- Placeholder: "e.g., Q1 Marketing Campaign"
+- Error text area below (hidden by default)
+
+Input 2: Brief Description  
+- Label above: "Brief Description *"
+- Multi-line text area (expandable, 200-400px height)
+- Placeholder: "Describe what needs to be done in detail..."
+- Character counter inside (bottom-right): "(0)"
+- Help text below: "500-1000 characters recommended"
+- Error text area below (hidden by default)
+
+[Footer - 24px padding]
+- Button: "Cancel" (secondary, left)
+- Button: "Generate Tasks" (primary, right, with sparkles icon)
+
+INTERACTIONS:
+- Click overlay → Close dialog (with confirmation if form has content)
+- Type in title → Update count, validate on blur
+- Type in description → Update character count in real-time
+- Click Cancel → Close dialog
+- Click Generate Tasks → Submit form (if valid) or show errors
+
+STATES:
+- Default: Empty form, Generate button disabled
+- Active: User typing, realtime updates
+- Valid: Both fields meet requirements, button enabled
+- Invalid: Show error messages, button disabled
+- Loading: Generating tasks (spinner on button)
+
+RESPONSIVE:
+- Desktop: 600px centered modal
+- Mobile: Full-screen modal
+```
+
+### For Uizard / Quick Prototyping
+
+```
+Create a "Brief Creation Dialog" screen
+
+Layout Type: Modal/Dialog
+Screen Size: 600px × Auto (Desktop), Full-screen (Mobile)
+
+Elements:
+
+ROW 1: Header
+- [Text] "Create New Brief" - Bold, 18px
+- [Button] Close (X icon) - Top-right corner
+
+ROW 2: Title Input
+- [Label] "Brief Title *" - 14px
+- [Input] Single-line text field
+  * Placeholder: "e.g., Q1 Marketing Campaign"
+  * Max length: 100 characters
+  * Height: 44px
+
+ROW 3: Description Input
+- [Label] "Brief Description *" - 14px
+- [Textarea] Multi-line text field
+  * Placeholder: "Describe what needs to be done..."
+  * Min height: 200px
+  * Character counter: Bottom-right inside
+- [Text] Helper: "500-1000 characters recommended" - 12px, gray
+
+ROW 4: Actions (Buttons in horizontal row)
+- [Button] "Cancel" - Ghost style, left-aligned
+- [Button] "Generate Tasks" - Primary style, right-aligned
+  * Icon: Sparkles (✨)
+  * States: Normal, Disabled, Loading
+
+Spacing: 16px between rows, 12px between buttons
+
+Colors:
+- Background: White (#FFFFFF)
+- Primary: Dark gray (#0f172a)
+- Borders: Light gray (#e2e8f0)
+- Text: Dark (#1e293b)
+- Helper text: Medium gray (#64748b)
+- Error: Red (#ef4444)
+- Success: Green (#10b981)
+
+Validation Rules:
+- Title: Minimum 5 characters, required
+- Description: Minimum 100 characters, required
+- Show errors below fields in red
+- Disable submit button when invalid
+```
+

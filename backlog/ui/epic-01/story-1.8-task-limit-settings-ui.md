@@ -132,3 +132,24 @@ Requirements:
 
 Use shadcn/ui Slider, Button, Tailwind CSS, React hooks for debouncing.
 ```
+
+---
+
+## AI Generation Prompts
+
+### v0.dev / Lovable
+```
+[Copy the feature description from above and use shadcn/ui components with React + TypeScript + Tailwind CSS]
+```
+
+### Figma AI
+```
+[Design the screens with proper spacing, typography, and component states as specified above]
+```
+
+### Visily.ai / Uizard
+```
+[Create wireframes following the layout structure and component specifications detailed above]
+```
+
+**Note:** Refer to sections 1-10 above for complete specifications including layout, components, interactions, states, responsive behavior, and accessibility requirements.

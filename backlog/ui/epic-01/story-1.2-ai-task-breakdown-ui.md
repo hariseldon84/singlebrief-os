@@ -439,3 +439,249 @@ Requirements:
 
 Use shadcn/ui components, Tailwind CSS, React hooks for state.
 ```
+
+## 12. Enhanced AI Tool Prompts
+
+### For v0.dev / Lovable
+
+```
+Create a task list component with progressive disclosure showing AI-generated tasks.
+
+LAYOUT:
+- Info banner at top (blue background): "🤖 AI generated 15 tasks - Review and select tasks to include"
+- Task list container with vertical stack
+- Show 5 tasks initially, "Show 5 More" button below
+- Selection counter: "{count} tasks selected"
+- Action buttons: "Regenerate" (outline) + "Confirm Tasks" (primary)
+
+TASK CARD COMPONENT:
+- Horizontal layout: Checkbox + Content
+- Width: Full width
+- Padding: 16px
+- Border: 1px solid gray-200
+- Border radius: 8px
+- Gap between cards: 12px
+- Hover: Light gray background + shadow
+
+TASK CARD CONTENT:
+- Title: Bold, 16px, max 2 lines with ellipsis
+- Description: Regular, 14px, gray, max 2 lines with ellipsis
+- Separator: 1px horizontal line (gray-200)
+
+CHECKBOX:
+- Size: 20px × 20px
+- Position: Top-aligned with card content
+- Default: All checked
+- Interactive: Click card or checkbox to toggle
+
+"SHOW MORE" BUTTON:
+- Full width
+- Height: 44px
+- Outline variant
+- Text: "Show 5 More Tasks" or "Show {remaining} More Tasks"
+- Icon: ChevronDown
+- Disabled when all shown
+
+ACTION BUTTONS:
+- "Regenerate": Outline, refresh icon, left-aligned
+  * Confirmation dialog: "Regenerate tasks? Current selections will be lost."
+- "Confirm Tasks": Primary, right-aligned
+  * Disabled when 0 selected
+  * Shows count: "Confirm 13 Tasks"
+
+INTERACTIONS:
+- Progressive disclosure: Show 5 at a time
+- Smooth animations: 300ms slide-in for new tasks
+- Auto-scroll to newly revealed tasks
+- Selection updates counter in real-time
+
+STATES:
+- Loading (initial): Skeleton cards with shimmer
+- Default: First 5 tasks shown, all checked
+- Expanded: More tasks visible
+- Regenerating: Skeleton overlay on existing tasks
+- Empty: No tasks generated (error state)
+
+TECH STACK:
+- React 18 + TypeScript
+- shadcn/ui: Alert, Button, Checkbox, Skeleton
+- Framer Motion for animations
+- Tailwind CSS
+```
+
+### For Figma AI
+
+```
+Design a task selection interface with progressive disclosure.
+
+COMPONENTS:
+
+1. Info Banner (full-width)
+   - Background: Light blue (#dbeafe)
+   - Border: 1px #93c5fd
+   - Padding: 12px 16px
+   - Icon: 🤖 robot (left)
+   - Text: "AI generated 15 tasks" (semibold)
+   - Subtext: "Review and select tasks to include" (regular, gray)
+   - Dismiss button: X (top-right)
+
+2. Task Card (repeating component)
+   - Container: 
+     * Width: Full
+     * Height: Auto
+     * Padding: 16px
+     * Border: 1px #e5e7eb
+     * Border-radius: 8px
+     * Background: White
+     * Hover: Background #f9fafb, Shadow-sm
+   
+   - Layout (horizontal):
+     [Checkbox 20px] [Content flex-1]
+   
+   - Content:
+     * Title: 16px semibold #1f2937, max-height 40px (2 lines)
+     * Separator: 1px line #e5e7eb, margin 8px vertical
+     * Description: 14px regular #6b7280, max-height 45px (2 lines)
+   
+   - States:
+     * Default (unchecked)
+     * Checked (blue checkmark)
+     * Hover (gray background)
+
+3. Show More Button
+   - Width: Full
+   - Height: 44px
+   - Border: 1px #e5e7eb
+   - Border-radius: 6px
+   - Background: White
+   - Text: "Show 5 More Tasks" (14px medium)
+   - Icon: ChevronDown (right of text)
+   - Hover: Background #f9fafb
+
+4. Selection Counter
+   - Text: "13 tasks selected" (14px medium #6b7280)
+   - Position: Below task list, above buttons
+   - Padding: 12px 0
+
+5. Action Buttons Row
+   - Container: Horizontal, space-between, 12px gap
+   - Left: "Regenerate" button
+     * Style: Outline
+     * Icon: Refresh/Reload
+     * Text: "Regenerate"
+     * Size: Medium
+   - Right: "Confirm Tasks" button
+     * Style: Primary (filled)
+     * Text: "Confirm 13 Tasks"
+     * Size: Medium
+     * States: Normal, Disabled (0 selected)
+
+ANIMATIONS TO PROTOTYPE:
+- Checkbox toggle (150ms)
+- New tasks sliding in (300ms ease-out)
+- Button loading state (spinner rotation)
+
+COLOR PALETTE:
+- Primary: #3b82f6
+- Background: #ffffff
+- Border: #e5e7eb
+- Text primary: #1f2937
+- Text secondary: #6b7280
+- Hover: #f9fafb
+```
+
+### For Visily.ai
+
+```
+SCREEN: Task Selection with Progressive Disclosure
+
+LAYOUT: Vertical stack
+
+SECTION 1: Info Banner
+- Background: Light blue
+- Icon: Robot emoji
+- Text: "AI generated 15 tasks"
+- Subtext: "Review and select"
+- Dismiss: X button
+
+SECTION 2: Task List (scrollable)
+- Display: 5 tasks initially
+- Spacing: 12px gap between cards
+
+TASK CARD (repeating):
+- Layout: Checkbox (left) + Text content (right)
+- Border: Light gray, 1px
+- Padding: 16px
+- Corner radius: 8px
+- States: Normal, Hover, Checked
+
+Text Content:
+- Title (bold, 16px, 2 lines max)
+- Divider line
+- Description (regular, 14px, gray, 2 lines max)
+
+SECTION 3: Show More Control
+- Button: "Show 5 More Tasks" (outline)
+- Full width
+- Center-aligned text with down arrow
+
+SECTION 4: Footer
+- Selection count: "13 tasks selected"
+- Buttons row:
+  * Left: "Regenerate" (outline, with icon)
+  * Right: "Confirm Tasks" (primary)
+
+INTERACTIONS:
+- Tap checkbox or card → Toggle selection
+- Tap "Show More" → Reveal next 5 tasks
+- Tap "Regenerate" → Show confirmation → Replace tasks
+- Tap "Confirm" → Save selections
+
+RESPONSIVE:
+- Mobile: Full width, vertical buttons
+- Desktop: Max-width 900px, horizontal buttons
+```
+
+### For Uizard
+
+```
+Screen: "Task Review & Selection"
+Type: List with Progressive Disclosure
+
+Components:
+
+1. [Alert Banner] Info
+   - Background: Blue-100
+   - Icon: Robot
+   - Message: "AI generated 15 tasks"
+
+2. [List] Task Cards
+   - Items: 5 visible initially
+   - Item template:
+     * [Checkbox] Left-aligned, 20px
+     * [Text] Title - Bold, 16px
+     * [Divider] Thin line
+     * [Text] Description - Regular, 14px, Gray
+
+3. [Button] "Show More"
+   - Style: Outline
+   - Width: Full
+   - Icon: Down arrow
+
+4. [Text] Counter
+   - Content: "{count} tasks selected"
+   - Style: Medium gray
+
+5. [Button Group] Actions
+   - Left button: "Regenerate" (Outline, Refresh icon)
+   - Right button: "Confirm Tasks" (Primary)
+
+Behavior:
+- All checkboxes start checked
+- Click checkbox or card → Toggle
+- Click "Show More" → Add 5 more items
+- Counter updates live
+- "Confirm" disabled when 0 selected
+
+Layout: Vertical, 900px max-width, centered
+```
