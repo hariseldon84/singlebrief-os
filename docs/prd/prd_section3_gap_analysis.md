@@ -660,3 +660,25 @@ Search shall support advanced filter combinations:
 ---
 
 *Gap Analysis elicitation complete - 23 gaps identified, 13 new FRs proposed (FR99-FR111)*
+
+Decision Documentation (Questions 9-12)
+
+  Question 9: Onboarding Flow → B) Minimal onboarding
+  - Welcome screen with "Create First Brief" CTA
+  - Rich empty states (FR100) provide guidance
+  - Balance between speed to value and user support
+
+  Question 10: Bulk Task Actions → A) Full bulk actions
+  - Select multiple tasks, assign/prioritize/archive in bulk
+  - Essential for 20+ task briefs
+  - FR106 added to MVP scope
+
+  Question 11: Dark Mode → B) Light mode only
+  - Defer to post-MVP
+  - Focus MVP effort on core functionality
+  - Add based on user demand post-launch
+
+  Question 12: Mobile Gestures → C) No gestures in MVP
+  - Standard tap interactions only
+  - Validate mobile usage patterns first
+  - Add gestures based on actual mobile user feedback

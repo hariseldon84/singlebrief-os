@@ -57,8 +57,8 @@ SingleBrief delivers **confidence to act** through:
 - ✅ 80%+ of briefs generate satisfactory tasks on first try
 
 **Scope:**
-- **111 Functional Requirements** across 8 epics
-- **42 User Stories** (212 story points)
+- **128 Functional Requirements** across 8 epics (111 core + 17 authentication)
+- **42 User Stories** (220 story points)
 - **5-Week Implementation** (4 weeks core + 1 week "Why This Matters")
 - **No-Code Architecture** (n8n + Supabase + AI-generated frontend)
 
@@ -275,7 +275,9 @@ SingleBrief delivers **confidence to act** through:
 
 ## 4. Complete Requirements
 
-### 4.1 Functional Requirements (FR1-FR111)
+### 4.1 Functional Requirements (FR1-FR128)
+
+**Note:** FR1-FR111 cover core product features. FR112-FR128 (17 additional) cover authentication and security (Epic 8), added post-initial planning to establish secure foundation.
 
 #### Epic 1: Brief Creation and AI Task Generation (FR1-FR20, FR68-FR70, FR82-FR84, FR95)
 
@@ -779,9 +781,11 @@ USING (
 - 4 stories, 18 story points
 - Deliverables: AI generation, collapsible UI, edit/regenerate, team visibility
 
-### 6.2 Epic 8: Authentication and Security (NEW)
+### 6.2 Epic 8: Authentication and Security (ADDED POST-INITIAL PLANNING)
 
 **Epic Goal:** Implement Supabase Auth for secure user authentication, team invitations, and session management.
+
+**Evolution Note:** Originally planned as 7 epics (see prd_section5.md). Epic 8 added after initial planning to establish security foundation before core feature development. This addition explains the story point increase from 212 to 220 points.
 
 **Timeline:** Week 2 (concurrent with Task Management)
 **Priority:** P0 (Must Have - Security Foundation)
@@ -1022,10 +1026,11 @@ Epic 1 → Epic 2 (incl. Epic 8) → Epic 4 → Epic 7
 **END OF CONSOLIDATED PRD**
 
 **Ready for Implementation:** ✅
-**Total Requirements:** 128 FRs across 8 Epics
+**Total Requirements:** 128 FRs across 8 Epics (111 core + 17 auth/security)
 **Timeline:** 5 weeks (42 stories, 220 story points)
 **Architecture:** Fully no-code (n8n + Supabase + AI-generated frontend)
 **Cost:** $10-15/month MVP → $161-211/month at scale
+**Epic Evolution:** Originally 7 epics → Expanded to 8 with authentication foundation
 
 **Next Steps:**
 1. Review and approve consolidated PRD
